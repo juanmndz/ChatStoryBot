@@ -39,7 +39,6 @@ class ChatBot extends Component {
     this.onValueChange = this.onValueChange.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleSubmitButton = this.handleSubmitButton.bind(this);
-    this.triggetNext = this.triggetNext.bind(this);
   }
 
   componentWillMount() {
@@ -255,19 +254,6 @@ class ChatBot extends Component {
         });
       }, 300);
     }
-  }
-
-  triggetNext() {
-    const { step } = this.props;
-    const { component, delay, waitAction } = step;
-    const isComponentWatingUser = component && waitAction;
-    setTimeout(() => {
-      this.setState({ loading: false }, () => {
-        if (!isComponentWatingUser && !step.rendered) {
-          this.props.triggerNextStep();
-        }
-      });
-    }, delay);
   }
 
   handleEnd() {
