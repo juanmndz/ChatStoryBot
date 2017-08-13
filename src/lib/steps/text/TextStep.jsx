@@ -21,12 +21,12 @@ class TextStep extends Component {
   componentDidMount() {
     const { step } = this.props;
     const { component, delay, waitAction } = step;
-    const isComponentWatingUser = component && waitAction;
+    // const isComponentWatingUser = component && waitAction;
     setTimeout(() => {
       this.setState({ loading: false }, () => {
-        if (!isComponentWatingUser && !step.rendered) {
-          this.props.triggerNextStep();
-        }
+        // if (!isComponentWatingUser && !step.rendered) {
+        //   this.props.triggerNextStep();
+        // }
       });
     }, delay);
   }
@@ -37,7 +37,11 @@ class TextStep extends Component {
     let { message } = step;
 
     if (component) {
-      const { steps, previousStep, triggerNextStep } = this.props;
+      const {
+        steps,
+        previousStep,
+        triggerNextStep,
+      } = this.props;
       return React.cloneElement(component, {
         step,
         steps,
@@ -46,7 +50,10 @@ class TextStep extends Component {
       });
     }
 
-    message = message.replace(/{previousValue}/g, previousValue);
+    message = message.replace(
+      /{previousValue}/g,
+      previousValue,
+    );
 
     return message;
   }
@@ -61,24 +68,20 @@ class TextStep extends Component {
       hideBotAvatar,
       hideUserAvatar,
     } = this.props;
-    const {
-      avatar,
-      user,
-    } = step;
+    const { avatar, user } = step;
 
-    const showAvatar = user ? !hideUserAvatar : !hideBotAvatar;
+    const showAvatar = user
+      ? !hideUserAvatar
+      : !hideBotAvatar;
 
     return (
-      <TextStepContainer
-        className="rsc-ts"
-        user={user}
-      >
+      <TextStepContainer className="rsc-ts" user={user}>
         <ImageContainer
           className="rsc-ts-image-container"
           user={user}
         >
-          {
-            isFirst && showAvatar &&
+          {isFirst &&
+            showAvatar &&
             <Image
               className="rsc-ts-image"
               style={avatarStyle}
@@ -86,8 +89,7 @@ class TextStep extends Component {
               user={user}
               src={avatar}
               alt="avatar"
-            />
-          }
+            />}
         </ImageContainer>
         <Bubble
           className="rsc-ts-bubble"
@@ -97,11 +99,8 @@ class TextStep extends Component {
           isFirst={isFirst}
           isLast={isLast}
         >
-          {
-            this.state.loading &&
-            <Loading />
-          }
-          { !this.state.loading && this.renderMessage() }
+          {this.state.loading && <Loading />}
+          {!this.state.loading && this.renderMessage()}
         </Bubble>
       </TextStepContainer>
     );

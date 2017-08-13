@@ -5041,7 +5041,7 @@ react-dev-utils@^3.1.0:
     strip-ansi "3.0.1"
     text-table "0.2.0"
 
-react-dom@^15.6.1:
+react-dom@^15.5.4, react-dom@^15.6.1:
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.6.1.tgz#2cb0ed4191038e53c209eb3a79a23e2a4cf99470"
   dependencies:
@@ -5104,7 +5104,18 @@ react-scripts@1.0.11:
   optionalDependencies:
     fsevents "1.1.2"
 
-react@^15.6.1:
+react-simple-chatbot@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/react-simple-chatbot/-/react-simple-chatbot-0.2.3.tgz#fbaa32276cf74980c2679aae1318217e5dd48c6c"
+  dependencies:
+    circular-json "^0.3.1"
+    lodash "^4.17.4"
+    prop-types "^15.5.8"
+    random-id "0.0.2"
+    react "^15.5.4"
+    react-dom "^15.5.4"
+
+react@^15.5.4, react@^15.6.1:
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/react/-/react-15.6.1.tgz#baa8434ec6780bde997cdc380b79cd33b96393df"
   dependencies:

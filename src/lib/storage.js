@@ -1,15 +1,17 @@
+const JSON = require('circular-json');
+var cacheset;
 const getData = ({ cache, firstStep, steps }, callback) => {
   const currentStep = firstStep;
   const renderedSteps = [steps[currentStep.id]];
   const previousSteps = [steps[currentStep.id]];
   const previousStep = {};
-
-  if (cache && localStorage.getItem('rsc_cache')) {
-    const data = JSON.parse(localStorage.getItem('rsc_cache'));
+  cacheset = cache;
+  if (cache && localStorage.getItem(cache)) {
+    const data = JSON.parse(localStorage.getItem(cache));
     const lastStep = data.renderedSteps[data.renderedSteps.length - 1];
 
     if (lastStep && lastStep.end) {
-      localStorage.removeItem('rsc_cache');
+      localStorage.removeItem(cache);
     } else {
       for (let i = 0; i < data.renderedSteps.length; i += 1) {
         // remove delay of cached rendered steps
@@ -44,7 +46,7 @@ const getData = ({ cache, firstStep, steps }, callback) => {
 };
 
 const setData = (data) => {
-  localStorage.setItem('rsc_cache', JSON.stringify(data));
+  localStorage.setItem(cacheset, JSON.stringify(data));
 };
 
 export {
